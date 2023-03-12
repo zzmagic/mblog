@@ -1,0 +1,52 @@
+.loginArea {
+    @apply fixed top-0 left-0 bg-black bg-opacity-30 w-full h-full z-10 backdrop-blur-sm
+}
+
+.loginBox {
+    @apply 
+    w-72 
+    h-auto
+     bg-white
+     text-neutral-700 
+      relative 
+      top-1/2 
+      left-1/2 
+      -translate-x-1/2 
+      -translate-y-1/2
+      p-6
+      rounded-md
+}
+
+.loginBox input {
+    @apply mt-1 px-3 py-2 mt-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1
+}
+
+.loginTitle {
+    .close {
+        @apply absolute right-4 top-4 font-sans cursor-pointer text-gray-400
+    }
+    @apply text-lg font-semibold flex justify-between align-middle mb-4
+}
+
+.verifyCodeArea {
+    .getVerifyCode {
+        @apply absolute right-3 top-2 text-blue-400
+    }
+    @apply relative cursor-pointer;
+}
+
+.loginBtn {
+    @apply h-10 leading-10 rounded-md bg-blue-500 mt-4 text-white text-center hover:bg-blue-600 cursor-pointer focus:ring-1 focus:ring-blue-800
+}
+
+.oauthGithubBtn {
+    @apply mt-4 cursor-pointer text-blue-500 hover:text-blue-600
+}
+
+.loginPrivacy {
+    a {
+        @apply text-blue-500
+    }
+    @apply mt-2 text-gray-800
+    
+}
