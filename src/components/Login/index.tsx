@@ -4,6 +4,8 @@ import { ChangeEvent, useState } from "react";
 import CountDown from "../CountDown";
 import { message } from "antd";
 import r from 'src/iapi/fetch'
+import { useStore } from "@/store";
+import { observer } from "mobx-react-lite";
 
 interface IProps {
     isShow: boolean;
@@ -11,7 +13,9 @@ interface IProps {
 }
 
 const Login = (props: IProps) => {
-    const {isShow = false} = props
+    const {isShow = false, onClose} = props
+
+    const store = useStore();
 
     const [form, setForm] = useState({
         phone: '',
@@ -47,7 +51,20 @@ const Login = (props: IProps) => {
     }
 
     const handleLogin = () => {
-
+        console.log(form);
+        r.post('/api/user/login', {
+            ...form,
+            identity_type: 'phone'
+        }).then((res: any) => {
+            if(res?.code === 0) {
+                store.user.setUserInfo(res.data)
+                console.log(22222);
+                console.log(store);
+                onClose && onClose();
+            } else {
+                message.error(res?.msg || 'Unknown error.')
+            }
+        });
     }
 
     const handleOauthGithub = () => {
@@ -82,4 +99,4 @@ const Login = (props: IProps) => {
     ) : null)
 }
 
-export default Login
+export default observer(Login);

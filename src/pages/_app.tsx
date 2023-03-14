@@ -1,10 +1,37 @@
-import '@/styles/globals.css'
-import type { AppProps } from 'next/app'
-import Layout from 'src/components/layout'
+import '@/styles/globals.css';
+import type { AppProps } from 'next/app';
+import Layout from 'src/components/layout';
+import { StoreProvider } from '@/store';
+import { NextPage } from 'next';
 
-export default function App({ Component, pageProps }: AppProps) {
+interface IProps {
+  initialValue: Record<any, any>;
+  Component: NextPage;
+  pageProps: any
+}
+
+
+export default function App({ initialValue, Component, pageProps }: IProps) {
   return (
-  <Layout>
-      <Component {...pageProps} />
-  </Layout>);
+    <StoreProvider initialValue={initialValue}>
+        <Layout>
+            <Component {...pageProps} />
+        </Layout>
+    </StoreProvider>);
+}
+
+App.getInitialProps = async ({ctx}: {ctx: any}) => {
+    const {userId, nickname, avatar} = ctx?.req.cookies || {};
+
+    return {
+      initialValue: {
+        user: {
+          userInfo: {
+            userId,
+            nickname,
+            avatar
+          }
+        }
+      }
+    }
 }

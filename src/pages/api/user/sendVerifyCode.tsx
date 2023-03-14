@@ -42,13 +42,18 @@ const sendVerifyCode =  async function(req: NextApiRequest, res: NextApiResponse
             code: 0,
             msg: statusMsg,
             data: {
-                
+                verifyCode
             }
          });
     } else {
+        session.verifyCode = verifyCode;
+        await session.save();
         res.status(200).json({
-            code: statusCode,
-            msg: statusMsg
+            code: 0,
+            msg: statusMsg,
+            data: {
+                verifyCode
+            }
         });
     }
 
