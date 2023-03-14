@@ -66,8 +66,11 @@ const Login = (props: IProps) => {
             }
         });
     }
-
+//79ad27cd3121921c335e
+    //10af6d3f656d44a6eb949e94e1c8c46e0688a5a5
     const handleOauthGithub = () => {
+        const githubClientId = '79ad27cd3121921c335e';
+        window.open(`https://github.com/login/oauth/authorize?client_id=${githubClientId}&scope=user:email`)
 
     }
 
