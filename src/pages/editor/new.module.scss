@@ -1,0 +1,15 @@
+.container {
+    @apply bg-white
+}
+
+.operation {
+    @apply flex mx-2
+}
+
+.title {
+    @apply flex-1 h-10
+}
+
+.button {
+    @apply w-24 bg-blue-500 text-white
+}

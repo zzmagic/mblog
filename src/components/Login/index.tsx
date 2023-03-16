@@ -30,7 +30,7 @@ const Login = (props: IProps) => {
     }
 
     const handleClose = () => {
-
+        onClose && onClose();
     }
 
     const handleGetVerifyCode = () => {

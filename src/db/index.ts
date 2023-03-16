@@ -2,6 +2,7 @@ import "reflect-metadata";
 import {DataSource, DataSourceOptions} from "typeorm";
 import { User } from "./entity/user";
 import { UserAuth } from "./entity/userAuth";
+import { Article } from "./entity";
 
 const type = "mysql"
 const host = process.env.DATABASE_HOST
@@ -21,14 +22,14 @@ export const getDataSource = () => {
             username,
             password,
             database,
-            entities: [User, UserAuth],
+            entities: [User, UserAuth, Article],
             logging: true,
             synchronize: false
         });
 
         appDataSourcePromise = (async () => {
             return await dataSource.initialize()
-        })()
+        })();
     }
     return appDataSourcePromise
 }

@@ -3,7 +3,7 @@ import Link from "next/link";
 import {navs} from './config';
 import styles from './index.module.scss';
 import { useRouter } from "next/router";
-import { Avatar, Button, Dropdown, Menu } from "antd";
+import { Avatar, Button, Dropdown, Menu, message } from "antd";
 import { useState } from "react";
 import Login from 'src/components/Login';
 import { useStore } from "@/store";
@@ -13,11 +13,15 @@ import { observer } from "mobx-react-lite";
 const Navbar: NextPage = () => {
     const store = useStore();
     const {userId, nickname, avatar} = store.user.userInfo;
-    const {pathname} = useRouter();
+    const {pathname, push} = useRouter();
     const [isShowLogin, setIsShowLogin] = useState(false);
 
     const handleGoToEditorPage = () => {
-
+        if (userId) {
+            push('/editor/new');
+        } else {
+            message.warning('Please login.');
+        }
     }
 
     const handleLogin = () => {
@@ -38,7 +42,7 @@ const Navbar: NextPage = () => {
     }
 
     const handleGoToProfile = () => {
-
+        push(`/user/${userId}`);
     }
 
     const handleLogout = () => {

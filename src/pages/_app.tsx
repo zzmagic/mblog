@@ -12,16 +12,24 @@ interface IProps {
 
 
 export default function App({ initialValue, Component, pageProps }: IProps) {
+
+  const renderLayout = () => {
+    if (Component.layout === null) {
+      return <Component {...pageProps} />
+    } else {
+      return (<Layout>
+                <Component {...pageProps} />
+              </Layout>);
+    }
+  }
   return (
     <StoreProvider initialValue={initialValue}>
-        <Layout>
-            <Component {...pageProps} />
-        </Layout>
+        {renderLayout()}
     </StoreProvider>);
 }
 
 App.getInitialProps = async ({ctx}: {ctx: any}) => {
-    const {userId, nickname, avatar} = ctx?.req.cookies || {};
+    const {userId, nickname, avatar} = ctx?.req?.cookies || {};
 
     return {
       initialValue: {
