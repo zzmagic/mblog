@@ -1,0 +1,26 @@
+.title {
+    @apply text-2xl font-bold
+}
+
+.user {
+    .info {
+        .name {
+            @apply text-sm font-bold
+        }
+        .date {
+            div {
+                @apply mr-4
+            }
+            @apply text-xs text-gray-600 flex
+        }
+        @apply ml-4 self-center
+    }
+    @apply flex justify-start align-middle mb-10
+}
+
+.markdown {
+    img {
+        @apply w-full
+    }
+}
+

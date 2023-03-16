@@ -60,7 +60,7 @@ const login = async (req: NextApiRequest, res: NextApiResponse)=> {
         } else {
             const user = new User();
             user.nickname = `User_${Math.floor(Math.random() * 10000)}`;
-            user.avatar = 'images/default_avatar.webp';
+            user.avatar = '/images/default_avatar.webp';
             user.job = "None.";
             user.introduce = 'None.';
 

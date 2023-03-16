@@ -15,14 +15,15 @@ interface IProps {
 }
 
 export async function getServerSideProps() {
-  console.log('2222222');
   const dataSource = await getDataSource();
   const articles = await dataSource.getRepository(Article).find(
     {
-      relations: ['user']
+      relations: ['user'],
+      order: {
+        'update_time': 'DESC'
+      }
     }
   );
-  console.log(articles);
   return {
     props: {
       articles: JSON.parse(JSON.stringify(articles))
@@ -34,7 +35,6 @@ export async function getServerSideProps() {
 const Home = (props: IProps) => {
 
   const {articles} = props;
-  console.log(articles);
   return (
     <div>
       <div className="content-layout">
@@ -44,9 +44,7 @@ const Home = (props: IProps) => {
           <ListItem article={article}></ListItem>
           <Divider />
           </>
-        )
-          
-        )
+        ))
       }
       </div>
       </div>
