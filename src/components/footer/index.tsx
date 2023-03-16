@@ -1,9 +1,10 @@
 import type { NextPage } from "next";
+import styles from './index.module.scss';
 
 const Footer: NextPage = ({}) => {
     return (
-        <div>
-            我是底部
+        <div className={styles.footer}>
+             <p>©2023 Derlio</p>
         </div>
     )
 }

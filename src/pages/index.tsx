@@ -1,12 +1,65 @@
-import type { NextPage } from "next";
-import { useState, useRef, Fragment } from "react";
-import { Dialog, Transition } from '@headlessui/react'
-import { ExclamationTriangleIcon } from '@heroicons/react/24/outline'
+// import type { NextPage } from "next";
+// import { useState, useRef, Fragment } from "react";
+// import { Dialog, Transition } from '@headlessui/react'
+// import { ExclamationTriangleIcon } from '@heroicons/react/24/outline'
 
-const Home: NextPage = () => {
-  const [open, setOpen] = useState(true)
+import ListItem from "@/components/ListItem";
+import { getDataSource } from "@/db";
+import { Article } from "@/db/entity";
+import { Divider } from "antd";
 
-  const cancelButtonRef = useRef(null)
+import { IArticle } from "./api";
+
+interface IProps {
+  articles: IArticle[]
+}
+
+export async function getServerSideProps() {
+  console.log('2222222');
+  const dataSource = await getDataSource();
+  const articles = await dataSource.getRepository(Article).find(
+    {
+      relations: ['user']
+    }
+  );
+  console.log(articles);
+  return {
+    props: {
+      articles: JSON.parse(JSON.stringify(articles))
+    }
+  };
+
+}
+
+const Home = (props: IProps) => {
+
+  const {articles} = props;
+  console.log(articles);
+  return (
+    <div>
+      <div className="content-layout">
+      {
+        articles.map(article => (
+          <>
+          <ListItem article={article}></ListItem>
+          <Divider />
+          </>
+        )
+          
+        )
+      }
+      </div>
+      </div>
+  )
+  
+};
+
+export default Home;
+
+
+// const [open, setOpen] = useState(true)
+
+  // const cancelButtonRef = useRef(null)
 
   // return (
   //   <Transition.Root show={open} as={Fragment}>
@@ -76,11 +129,3 @@ const Home: NextPage = () => {
   //       </div>
   //     </Dialog>
   //   </Transition.Root>
-  return (
-    <div>我的首页</div>
-  )
-  
-};
-
-export default Home;
-

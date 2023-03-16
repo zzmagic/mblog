@@ -1,0 +1,49 @@
+.container {
+    @apply bg-white m-auto flex align-middle justify-between p-4 cursor-pointer
+}
+
+.article {
+
+    .userInfo {
+        span {
+            @apply px-2 border-r
+        }
+
+        span:first-of-type{
+            padding-left: 0;
+        }
+
+        span:last-of-type {
+            @apply border-r-0
+        }
+
+        .name {
+            @apply text-gray-600 hover:underline hover:text-blue-400
+        }
+
+        .date {
+            @apply text-gray-400
+        }
+
+        @apply mb-2 flex align-middle
+    }
+
+    .title {
+        @apply text-xl text-ellipsis whitespace-nowrap overflow-hidden
+    }
+
+    .content {
+        @apply text-gray-500 text-ellipsis whitespace-nowrap overflow-hidden
+    }
+
+    .statistics {
+
+        span {
+            @apply ml-1 self-center
+        }
+
+        @apply flex align-middle 
+    }
+
+    @apply w-3/4
+}
