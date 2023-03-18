@@ -60,7 +60,9 @@ const ArticleDetail = (promps: IProps) => {
                         <div>views {article?.views}</div>
                         {
                         Number(loginUserInfo?.userId) === Number(id) && (
-                            <Link href={`/editor/${article?.id}`}>Edit</Link>
+                            <Link href={`/editor/${article?.id}`}>
+                                <span className="text-blue-400">Edit</span>
+                                </Link>
                         )
                     }
                     </div>

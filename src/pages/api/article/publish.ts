@@ -42,7 +42,7 @@ const publish = async (req: NextApiRequest, res: NextApiResponse)=> {
             msg: 'Publish success.'
         })
     } else {
-        res.status(200).json({...EXCEPTION_ARTILE});
+        res.status(200).json({...EXCEPTION_ARTILE.PUBLISH_FAILD});
     }
 
 }
